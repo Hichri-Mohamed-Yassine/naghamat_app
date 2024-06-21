@@ -8,16 +8,47 @@ void main() {
 class MusicWidget extends StatelessWidget {
   const MusicWidget({super.key});
 
+  void playMusic(int musicNumber) async {
+    final player = AudioPlayer();
+    await player.play(AssetSource('music-$musicNumber.mp3'));
+  }
+
+  Expanded myButton(int i, String name, Color color) {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 4.0),
+        child: ElevatedButton(
+          onPressed: () {
+            playMusic(i);
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.music_note,
+                  color: color,
+                ),
+                const SizedBox(
+                  width: 20.0,
+                ),
+                Text(
+                  name,
+                  style: TextStyle(fontSize: 20.0, color: color),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    void playMusic(int musicNumber) async {
-      final player = AudioPlayer();
-      await player.play(AssetSource('music-$musicNumber.mp3'));
-    }
-
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.purple[200],
+        backgroundColor: Colors.blue[200],
         appBar: AppBar(
           title: const Text(
             "Naghamat",
@@ -26,73 +57,18 @@ class MusicWidget extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          backgroundColor: Colors.purple,
+          backgroundColor: Colors.blue,
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                playMusic(1);
-              },
-              child: const Text(
-                "Huawei",
-                style: TextStyle(fontSize: 20.0, color: Colors.blue),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                playMusic(2);
-              },
-              child: const Text(
-                "Samsung S7",
-                style: TextStyle(fontSize: 20.0, color: Colors.blue),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                playMusic(3);
-              },
-              child: const Text(
-                "Samsung Note",
-                style: TextStyle(fontSize: 20.0, color: Colors.red),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                playMusic(4);
-              },
-              child: const Text(
-                "Samsung Galaxy",
-                style: TextStyle(fontSize: 20.0, color: Colors.blue),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                playMusic(5);
-              },
-              child: const Text(
-                "Nokia",
-                style: TextStyle(fontSize: 20.0, color: Colors.blue),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                playMusic(6);
-              },
-              child: const Text(
-                "Whatsapp",
-                style: TextStyle(fontSize: 20.0, color: Colors.blue),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                playMusic(7);
-              },
-              child: const Text(
-                "Iphone 6",
-                style: TextStyle(fontSize: 20.0, color: Colors.blue),
-              ),
-            ),
+            myButton(1, "Huawei", Colors.red),
+            myButton(2, "Samsung Galaxy", Colors.green),
+            myButton(3, "Nokia", Colors.black),
+            myButton(4, "Sumsung S7", Colors.yellow),
+            myButton(5, "Iphone 11", Colors.blue),
+            myButton(6, "Samsung Note", Colors.purpleAccent),
+            myButton(7, "Iphone 6", Colors.black),
           ],
         ),
       ),
