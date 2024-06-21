@@ -10,6 +10,11 @@ class MusicWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void playMusic(int musicNumber) async {
+      final player = AudioPlayer();
+      await player.play(AssetSource('music-$musicNumber.mp3'));
+    }
+
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.purple[200],
@@ -27,11 +32,67 @@ class MusicWidget extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                final player = AudioPlayer();
-                player.play(AssetSource('assets/music-2.mp3'));
+                playMusic(1);
               },
-              child: const Text("My Music"),
-            )
+              child: const Text(
+                "Huawei",
+                style: TextStyle(fontSize: 20.0, color: Colors.blue),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                playMusic(2);
+              },
+              child: const Text(
+                "Samsung S7",
+                style: TextStyle(fontSize: 20.0, color: Colors.blue),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                playMusic(3);
+              },
+              child: const Text(
+                "Samsung Note",
+                style: TextStyle(fontSize: 20.0, color: Colors.red),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                playMusic(4);
+              },
+              child: const Text(
+                "Samsung Galaxy",
+                style: TextStyle(fontSize: 20.0, color: Colors.blue),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                playMusic(5);
+              },
+              child: const Text(
+                "Nokia",
+                style: TextStyle(fontSize: 20.0, color: Colors.blue),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                playMusic(6);
+              },
+              child: const Text(
+                "Whatsapp",
+                style: TextStyle(fontSize: 20.0, color: Colors.blue),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                playMusic(7);
+              },
+              child: const Text(
+                "Iphone 6",
+                style: TextStyle(fontSize: 20.0, color: Colors.blue),
+              ),
+            ),
           ],
         ),
       ),
